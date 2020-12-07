@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     return (
       <Navbar bg="primary" variant="dark">
-      <Navbar.Brand href="#home">Quran</Navbar.Brand>
+      <Navbar.Brand href="#home">QURAN KITABULLAH</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="#home"></Nav.Link>
         <Nav.Link href="#features"></Nav.Link>
