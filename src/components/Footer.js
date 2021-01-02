@@ -7,7 +7,7 @@ class Footer extends Component {
             <footer id="sticky-footer" className="py-4 bg-primary text-white-50">
             <div className="container text-center">
               {/*<small>Copyright &copy; Your Website</small>*/}
-              <p>Made with <AiFillHeart/> by   Moctar Zaidane <AiFillGithub name="Test" onClick={event =>  window.location.href='https://github.com/MZDN'} /> </p>
+              <p>Made with <AiFillHeart/> by   Moctar Zaidane <AiFillGithub onClick={event =>  window.location.href='https://github.com/MZDN/quran-reactjs'} /> </p>
             </div>
           </footer>
         );
