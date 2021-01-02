@@ -22,7 +22,9 @@ class SurahPage extends Component {
           ayahs = null, name = null, englishName = null, englishNameTranslation = null, number = null, revelationType = null
         } = props.surah;*/
         this.state = {
-          surahData : []
+          surahData : [],
+          pageStart:0,
+          pageEnd:0
         }
 
     }
@@ -30,25 +32,30 @@ class SurahPage extends Component {
     componentDidMount () {
         const {surahId} = this.props.match.params;
         console.log(surahId);
-        const {surah} = this.props.match.params;
-        console.log(surah);
+        /*const {surah} = this.props.match.params;
+        console.log(surah);*/
         const config = {
           headers: {
             'accept': '*/*',
             'content-type': 'application/json'
           }
         };
-        ApiClient.get('surah/'+surahId+'/editions/quran-uthmani,en.pickthall',config).then(res=> {
+        ApiClient.get('chapters/'+surahId,config).then(res=> {
           console.log(res.data);
           const responseData = res.data;
-          let sDataAR = responseData.data[0];
+          let sDataAR = responseData['chapter'];
           //let sDataEN = responseData.data[1];
           console.log(sDataAR);
           //const { data: quranData } = surahsData;
           //this.setState({surahDataAR:sDataAR});
+
           this.setState({
-            surahData:sDataAR
+            surahData:sDataAR,
+            pageStart:sDataAR['pages'][0],
+            pageEnd:sDataAR['pages'][1]
           })
+          console.log(this.state.pageStart);
+          console.log(this.state.pageEnd);
           console.log(this.state.surahData);
       }).catch(err => {
         // what now?
@@ -63,7 +70,7 @@ class SurahPage extends Component {
                 {/*<div className="container-fluid">
                this is a test
                 </div>*/}
-              <QuranSlider></QuranSlider>
+              <QuranSlider pageStart={this.state.pageStart} pageEnd={this.state.pageEnd} surahData={this.state.surahData}></QuranSlider>
             </div>
 
             <Footer></Footer>

@@ -31,12 +31,12 @@ class SurahList extends Component {
         'content-type': 'application/json'
       }
     };
-
-    ApiClient.get('quran/quran-uthmani',config).then(res=> {
+    
+    ApiClient.get('chapters',config).then(res=> {
       console.log(res.data);
       const data = res.data;
 
-      let surahsData  = data.data.surahs.map(item => {
+      let surahsData  = data.chapters.map(item => {
         item.aptId = this.state.lastIndex;
         this.setState({ lastIndex: this.state.lastIndex + 1 });
         return item;

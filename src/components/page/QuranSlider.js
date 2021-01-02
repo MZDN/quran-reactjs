@@ -29,27 +29,54 @@ h3 {
 }
 `
 
-export default class SimpleSlider extends Component {
+export default class QuranSlider extends Component {
+
+    range(start, stop) {
+        var array = [];
+        var length = stop - start;
+        for (var i = 0; i <= length; i++) { 
+            array[i] = start;
+            start++;
+        }
+        return array;
+    }
     render() {
         const settings = {
-            dots: true,
-            infinite: true,
+            initialSlide: 0,
+            dots: false,
+            infinite: false,
+            autoplay: false,
             speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            rtl:true
+            arrows: true,
+            slidesToShow:2,
+            rtl:true,
+        
+            
         };
+        console.log(this.props.pageStart);
+        console.log(this.props.pageEnd);
+        const myArray=this.range(this.props.pageStart,this.props.pageEnd);
         return (
             
             <div>
                 <style>{cssstyle}</style>
                 {/*<h2> Surah Slider</h2>*/}
-                <Slider {...settings}>
-                    {[...Array(4)].map((_, i) => {
-                        let path = "https://raw.githubusercontent.com/quran/quran-ios/master/Quran/Resources/images/images_1280/width_1280/page" + (i + 1).toString().padStart(3, '0') + ".png";
-                        return (<div className="content">
-                            <img id="thumbnail-image" src={path} class="img-fluid"  alt="thumbnail" />
-                        </div>);
+                
+                <Slider {...settings} ref={slider=>(this.slider = slider)}>
+                 
+                    {[...Array.from(myArray)].map((_, i) => {
+                        {console.log(myArray[i])}
+                        if(myArray[i] !== 0){
+                        let path = "https://raw.githubusercontent.com/quran/quran-ios/master/Quran/Resources/images/images_1280/width_1280/page" + myArray[i].toString().padStart(3, '0') + ".png";
+                        //console.log(myArray[i]);
+                        /*return (<div className="content">
+                            <img id="thumbnail-image" src={path} className="img-fluid"  alt="thumbnail" />
+                        </div>);*/
+                        return (<div className="content" key={myArray[i]}>
+                        <p className="text-center">{"Surah:"+this.props.surahData['name_arabic']+" "+this.props.surahData['name_complex']+" p."+myArray[i]}</p>
+                        <img className="img-fluid" src={path} />  
+                      </div>);
+                        }
                     })}
                 </Slider>
             </div>
