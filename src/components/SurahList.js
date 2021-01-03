@@ -6,7 +6,7 @@ import Header from './Header';
 
 import ApiClient from './ApiClient';
 
-import '../css/App.scss';
+//import '../css/App.scss';
 import Pagination from './Pagination';
 import SurahCard from './SurahCard';
 
