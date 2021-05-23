@@ -6,20 +6,24 @@ const cssstyle = `
 .container {
     margin: 0 auto;
     padding: 0px 40px 40px 40px;
-    width: 750px;
+    width: 100%;  
+
 }
 .content {
     object-fit: cover;
     width: 100%;
     max-height: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 30px); 
+    display:flex; 
+    flex-direction: column;
+	align-items:center;
 }
 h3 {
     background: #5f9ea0;
     color: #fff;
     font-size: 36px;
     line-height: 100px;
-    margin: 10px;
+    margin: 100px;
     padding: 2%;
     position: relative;
     text-align: center;
